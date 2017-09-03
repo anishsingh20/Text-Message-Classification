@@ -68,7 +68,7 @@ navbarPage("Text Classification App",
                  h3("Ham wordcloud",align="center"),
                  
                  
-                 img(src='ham-wordcloud.png')
+                 img(src='ham-wordcloud.png',style="margin:auto")
                    
                   )
           ),#end fluidrow
@@ -79,7 +79,7 @@ navbarPage("Text Classification App",
         fluidRow(
           column(12,class="col-sm-12",
                  h3("Spam wordcloud",align="center"),
-                 img(src='Spam-wordcloud.png')
+                 img(src='Spam-wordcloud.png',style="margin:auto")
                  )
           
         )#end fluidrow 2
