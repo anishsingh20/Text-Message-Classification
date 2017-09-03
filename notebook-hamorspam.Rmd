@@ -75,7 +75,7 @@ docvars(msg.corpus)<-spam$type   #ataching the label to the corpus message text
 
 Let's plot the wordcloud now-
 
-```{r,fig.height=8,fig.width=10,out.width = '40%'}
+```{r,fig.height=6,fig.width=8}
 #subsetting only the spam messages
 spam.plot<-corpus_subset(msg.corpus,docvar1=="spam")
 
@@ -96,7 +96,7 @@ title("Spam Wordcloud", col.main = "grey14")
 
 ###Generating the Ham wordcloud
 
-```{r,fig.height=8,fig.width=12,out.width = '30%'}
+```{r,fig.height=6,fig.width=8,out.width = '80%'}
 ham.plot<-corpus_subset(msg.corpus,docvar1=="ham")
 ham.plot<-dfm(ham.plot,tolower = TRUE, remove_punct = TRUE, remove_twitter = TRUE, remove_numbers = TRUE,remove=c("gt", "lt", stopwords("SMART")))
 ham.col=brewer.pal(10, "BrBG")  
@@ -104,4 +104,15 @@ textplot_wordcloud(ham.plot,min.freq=50,colors=ham.col,fixed.asp=TRUE)
 title("Ham Wordcloud",col.main = "grey14")
 
 ```
+
+-------------
+
+
+##Prediction Using Naive Bayes Classifier
+
+Naive Bayes classifiers are a class of simple linear classifiers which  are *conditional probability* models based on __Bayes__ Theoram i.e 
+$$P(Y \in K_j | X_i) = P(X_1|Y).P(X_2|Y)......P(X_i|Y) . \ P(Y \in K_j),where \  X_i \ \text{are the number of inputs and Y is discrete response variable and } K_j \ \text{are the number of class labels}$$.
+
+The special thing about Naive Bayes classifiers are that they follow _Conditional Independence Theoram_ i.e the features $X_i$ are uncorrelated and independent of each other which is often always crude.Secondly,they assume that the data samples are drawn from a identical and independent distribution- __IID__ is the term which is famous in Statistics.
+
 
