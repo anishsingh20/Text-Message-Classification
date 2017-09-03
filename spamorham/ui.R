@@ -5,7 +5,7 @@ library(markdown)
 # Define UI for application that draws a histogram
 
 
-navbarPage("Text Classification",
+navbarPage("Text Classification App",
         tabPanel("Spam or Ham using Naive Bayes Classifier",
            
         fluidPage(
@@ -14,7 +14,7 @@ navbarPage("Text Classification",
            
             sidebarLayout(
               sidebarPanel(
-                textInput("message",label="Enter the message",placeholder="enter text here"),
+                textInput("message",label="Enter the message having words more than 5 :",placeholder="enter text here"),
                 actionButton("btn","submit")
                 
                             ),
@@ -59,6 +59,31 @@ navbarPage("Text Classification",
           )#end column-sm-12
           
         )#end fluidrow2 
+        ,
+        hr(),
+        
+        fluidRow(
+          h2("Wordclouds for Spam and Ham messages from Dataset",style="text-align:center"),
+          column(12,class="col-sm-12",
+                 h3("Ham wordcloud",align="center"),
+                 
+                 
+                 img(src='ham-wordcloud.png')
+                   
+                  )
+          ),#end fluidrow
+  
+        
+        hr(),
+        
+        fluidRow(
+          column(12,class="col-sm-12",
+                 h3("Spam wordcloud",align="center"),
+                 img(src='Spam-wordcloud.png')
+                 )
+          
+        )#end fluidrow 2
+        
         
       )#end fluidPage2
       
