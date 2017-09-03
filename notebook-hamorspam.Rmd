@@ -75,7 +75,7 @@ docvars(msg.corpus)<-spam$type   #ataching the label to the corpus message text
 
 Let's plot the wordcloud now-
 
-```{r}
+```{r,fig.height=8,fig.width=10,out.width = '40%'}
 #subsetting only the spam messages
 spam.plot<-corpus_subset(msg.corpus,docvar1=="spam")
 
@@ -86,6 +86,22 @@ spam.col <- brewer.pal(10, "BrBG")
 
 textplot_wordcloud(spam.plot, min.freq = 16, color = spam.col)  
 title("Spam Wordcloud", col.main = "grey14")
+
+```
+
+
+
+------------
+
+
+###Generating the Ham wordcloud
+
+```{r,fig.height=8,fig.width=12,out.width = '30%'}
+ham.plot<-corpus_subset(msg.corpus,docvar1=="ham")
+ham.plot<-dfm(ham.plot,tolower = TRUE, remove_punct = TRUE, remove_twitter = TRUE, remove_numbers = TRUE,remove=c("gt", "lt", stopwords("SMART")))
+ham.col=brewer.pal(10, "BrBG")  
+textplot_wordcloud(ham.plot,min.freq=50,colors=ham.col,fixed.asp=TRUE)
+title("Ham Wordcloud",col.main = "grey14")
 
 ```
 
