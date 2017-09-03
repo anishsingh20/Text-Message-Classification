@@ -42,6 +42,41 @@ Now let's add appropiate names to the columns.
 
 ```{r}
 names(spam)<-c("type","message")
+head(spam)
+
+
+```
+
+Now we can sample the data.We can randomize our data using the sample() command.If the data is not stored in a random distribution, this will help to ensure that we are dealing with a random draw from our data. The set.seed() is to ensure reproducable results.
+
+```{r}
+set.seed(2012)
+spam<-spam[sample(nrow(spam)),]
+
+```
+
+
+------------------
+
+
+###Now let's build the spam and ham Wordclouds
+
+We'll use quanteda's corpus() command to construct a corpus from the Text field of our raw data.A corpus can be thought of as a master copy of our dataset from which we can pull subsets or observations as needed.
+
+After this I will attach the Label field as a document variable to the corpus using the docvars() command. We attach Label as a variable directly to our corpus so that we can associate SMS messages with their respective ham/spam label later in the analysis.
+
+```{r}
+
+?corpus #to search more on this method
+msg.corpus<-corpus(spam$message)
+docvars(msg.corpus)<-spam$type   #ataching the label to the corpus message text
+
+```
+
+Let's plot the wordcloud now-
+
+```{r}
+
 
 ```
 
