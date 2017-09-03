@@ -1,7 +1,9 @@
 ---
 title: "Spam or Ham message Classification"
-output: html_notebook
 author: "Anish Singh Walia"
+output:
+  html_document: default
+  html_notebook: default
 ---
 
 
@@ -11,6 +13,7 @@ Requiring the necessary packages-
 require(quanteda)#natural language processing package
 ?quanteda 
 require(RColorBrewer)
+require(ggplot2)
 
 ```
 
@@ -75,7 +78,7 @@ docvars(msg.corpus)<-spam$type   #ataching the label to the corpus message text
 
 Let's plot the wordcloud now-
 
-```{r,fig.height=6,fig.width=8}
+```{r,fig.height=6,fig.width=8,out.width="80%"}
 #subsetting only the spam messages
 spam.plot<-corpus_subset(msg.corpus,docvar1=="spam")
 
@@ -111,12 +114,13 @@ title("Ham Wordcloud",col.main = "grey14")
 ##Prediction Using Naive Bayes Classifier
 
 Naive Bayes classifiers are a class of simple linear classifiers which  are *conditional probability* models based on __Bayes__ Theoram i.e 
-$$P(Y \in K_j | X_i) = P(X_1|Y).P(X_2|Y)......P(X_i|Y) . \ P(Y \in K_j),where \  X_i \ \text{are the number of inputs and Y is discrete response variable and } K_j \ \text{are the number of class labels}$$.
+$$P(Y \in K_j | X_i) = P(X_1|Y).P(X_2|Y)......P(X_i|Y) . \ P(Y \in K_j)$$ 
+$where \  X_i \ \text{are the number of inputs and Y is discrete response variable and } K_j \ \text{are the number of class labels}$.
 
 The special thing about Naive Bayes classifiers are that they follow _Conditional Independence Theoram_ i.e the features $X_i$ are uncorrelated and independent of each other which is often always crude.Secondly,they assume that the data samples are drawn from a identical and independent distribution- __IID__ is the term which is famous in Statistics.
 
 
-```{r}
+```{r,warning=FALSE,message=FALSE}
 #separating Train and test data
 spam.train<-spam[1:4458,]
 spam.test<-spam[4458:nrow(spam),]
@@ -132,4 +136,50 @@ msg.dfm.test<-msg.dfm[4458:nrow(spam),]
 
 
 ```
+
+Training the Naive Bayes classifier-
+
+```{r}
+
+nb.classifier<-textmodel_NB(msg.dfm.train,spam.train[,1])
+nb.classifier
+
+
+
+```
+
+The model outputs the Probabilities of the message being Spam or ham.
+
+
+------------
+
+###Let's Test the Model 
+
+```{r}
+
+pred<-predict(nb.classifier,msg.dfm.test)
+
+#generating a confusion matrix
+
+# use pred$nb.predicted to extract the class labels
+table(predicted=pred$nb.predicted,actual=spam.test[,1])
+#16 wrongly classified for ham and 7 examples wrongly classified for spam
+
+#acccuracy of the classifier on Test data
+mean(pred$nb.predicted==spam.test[,1])*100
+#accuracy of 97% on test set
+
+```
+In the Confusion matrix , the __off-diagonals__ are the correctly classified examples. 
+
+
+
+----------
+
+##Conclusion
+
+
+This was a simple project on Classifying text messages as __ham__ or __spam__ using some natural language proecessing and then building a Naive Bayes text classifier.Ofcourse,there are various other packages to do text processing and building such models.
+
+Hope you guys liked the article , make sure to like and share it.
 
