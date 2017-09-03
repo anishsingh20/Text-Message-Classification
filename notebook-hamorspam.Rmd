@@ -25,5 +25,15 @@ __quanteda__ makes it easy to manage texts in the form of a __corpus__, defined 
 ```{r}
 spam<-read.csv("F:/PROJECTS/Datasets/spam.csv",header=TRUE, sep=",", quote='\"\"', stringsAsFactors=FALSE)
 
+table(spam$v1)
+
+
+#checking the distribution of type of messages
+theme_set(theme_bw())
+ggplot(aes(x=v1),data=spam) +
+  geom_bar(fill="red",width=0.5)
+
+
+
 ```
 
