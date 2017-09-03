@@ -45,11 +45,13 @@ shinyServer(function(input, output) {
   
   output$label <-renderText({
     msg=corpus(input$message)
-    ms.dfm<-dfm(msg,tolower=TRUE,stem=TRUE, remove=stopwords("english"))
+    
+    ms.dfm<-dfm(msg,tolower=TRUE,stem=TRUE)
     ms.dfm=dfm_select(ms.dfm,msg.dfm.train)
     #predicting on the entered text by user
     class=predict(nb.classifier,newdata=ms.dfm)
-    class$nb.predicted
+    #printing the class label
+    toupper(class$nb.predicted)
     
   
   })
