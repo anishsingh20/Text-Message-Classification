@@ -37,3 +37,11 @@ ggplot(aes(x=v1),data=spam) +
 
 ```
 
+Now let's add appropiate names to the columns.
+
+
+```{r}
+names(spam)<-c("type","message")
+
+```
+
