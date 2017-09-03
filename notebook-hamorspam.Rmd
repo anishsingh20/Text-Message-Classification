@@ -4,3 +4,26 @@ output: html_notebook
 author: "Anish Singh Walia"
 ---
 
+
+Requiring the necessary packages-
+```{r,message=FALSE,warning=FALSE}
+
+require(quanteda)#natural language processing package
+?quanteda 
+require(RColorBrewer)
+
+```
+
+__quanteda__ makes it easy to manage texts in the form of a __corpus__, defined as a collection of texts that includes document-level variables specific to each text, as well as meta-data for documents and for the collection as a whole. quanteda includes tools to make it easy and fast to manuipulate the texts in a corpus, by performing the most common natural language processing tasks simply and quickly, such as tokenizing, stemming, or forming ngrams. quanteda’s functions for tokenizing texts and forming multiple tokenized documents into a document-feature matrix are both extremely fast and extremely simple to use. quanteda can segment texts easily by words, paragraphs, sentences, or even user-supplied delimiters and tags.
+
+--------------
+
+
+####loading the dataset
+
+
+```{r}
+spam<-read.csv("F:/PROJECTS/Datasets/spam.csv",header=TRUE, sep=",", quote='\"\"', stringsAsFactors=FALSE)
+
+```
+
