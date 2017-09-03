@@ -76,6 +76,12 @@ docvars(msg.corpus)<-spam$type   #ataching the label to the corpus message text
 Let's plot the wordcloud now-
 
 ```{r}
+#subsetting only the spam messages
+spam.plot<-corpus_subset(msg.corpus,docvar1=="spam")
+
+#now creating a document-feature matrix using dfm()
+spam.plot<-dfm(spam.plot, tolower = TRUE, remove_punct = TRUE, remove_twitter = TRUE, remove_numbers = TRUE, remove=stopwords("SMART"))
+
 
 
 ```
