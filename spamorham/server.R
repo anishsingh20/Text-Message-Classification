@@ -13,7 +13,10 @@ library(shiny)
 shinyServer(function(input, output) {
   
   
-  output$msg<- renderText({input$message})
+  output$label <- renderText({input$message
+                              
+  })
+  
   
   
   

@@ -9,16 +9,21 @@ shinyUI(fluidPage(
   # Sidebar with a slider input for number of bins 
     sidebarPanel(
         
-        textInput("message",label = "Enter the Message",value="",placeholder="Enter the message"
+        
+        textAreaInput("message",label = "Enter the Message",value="",width="80%",
+                      placeholder="Enter the message"
           
           
-        )
+        ),
+        
+        actionButton("submit",value="Submit",label="Submit",width="100px",
+                     style="background:#A137F3;border:0px;color:white")
   ),
 
     mainPanel(
-        verbatimTextOutput("msg")
-     )
-  
+        
+        textOutput("label")
+    )                
 ))
   
   
