@@ -116,3 +116,20 @@ $$P(Y \in K_j | X_i) = P(X_1|Y).P(X_2|Y)......P(X_i|Y) . \ P(Y \in K_j),where \ 
 The special thing about Naive Bayes classifiers are that they follow _Conditional Independence Theoram_ i.e the features $X_i$ are uncorrelated and independent of each other which is often always crude.Secondly,they assume that the data samples are drawn from a identical and independent distribution- __IID__ is the term which is famous in Statistics.
 
 
+```{r}
+#separating Train and test data
+spam.train<-spam[1:4458,]
+spam.test<-spam[4458:nrow(spam),]
+
+msg.dfm <- dfm(msg.corpus, tolower = TRUE)  #generating document freq matrix
+msg.dfm <- dfm_trim(msg.dfm, min_count = 5, min_docfreq = 3)  
+msg.dfm <- dfm_weight(msg.dfm, type = "tfidf") 
+
+#trining and testing data of dfm 
+msg.dfm.train<-msg.dfm[1:4458,]
+
+msg.dfm.test<-msg.dfm[4458:nrow(spam),]
+
+
+```
+
