@@ -170,7 +170,7 @@ mean(pred$nb.predicted==spam.test[,1])*100
 #accuracy of 97% on test set
 
 ```
-In the Confusion matrix , the __off-diagonals__ are the correctly classified examples. 
+In the Confusion matrix , the __diagonals__ are the correctly classified examples while the __off-diagonals__ the incorrectly classifiec examples.
 
 
 
