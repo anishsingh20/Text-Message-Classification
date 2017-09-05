@@ -179,7 +179,8 @@ In the Confusion matrix , the __diagonals__ are the correctly classified example
 ##Conclusion
 
 
-This was a simple project on Classifying text messages as __ham__ or __spam__ using some natural language proecessing and then building a Naive Bayes text classifier.Ofcourse,there are various other packages to do text processing and building such models.
+This was a simple article on classifying text messages as ham or spam using some basic natural language processing and then building a naive Bayes text classifier.I urge the readers to implement and use the knowledge acquired from this article in making their own text classifiers and solving different problems related to text processing and NLP etc.
+Ofcourse,there are various other packages to do text processing and building such models.
 
 Hope you guys liked the article , make sure to like and share it.
 
