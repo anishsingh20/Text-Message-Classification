@@ -14,6 +14,8 @@ require(quanteda)#natural language processing package
 ?quanteda 
 require(RColorBrewer)
 require(ggplot2)
+require(pROC)#to plot a ROC curve and find auc
+
 
 ```
 
@@ -169,7 +171,16 @@ table(predicted=pred$nb.predicted,actual=spam.test[,1])
 mean(pred$nb.predicted==spam.test[,1])*100
 #accuracy of 97% on test set
 
+prednum<-ifelse(pred$nb.predicted=="spam",1,2)
+
+auc<-roc(as.factor(spam.test[,1]),prednum)
+plot(auc)
+
+#Area under the curve: 0.9679
 ```
+In the ROC curve the area under the curve is __0.9679__ which is a very nice score and implies that the model can easily recognize text messages as either spam or ham.
+ROC curve is plotted between __Sensitivity__-i.e true positive rate(positive classes being classified correctly) vs the __Specificity__-i.e true negetive rate(negetive classes being clssified correctly)
+
 In the Confusion matrix , the __diagonals__ are the correctly classified examples while the __off-diagonals__ the incorrectly classifiec examples.
 
 
@@ -186,16 +197,8 @@ Hope you guys liked the article , make sure to like and share it.
 
 
 
--------------------------
-
-#IMPLEMENTING SMOTE TO BALANCE THE CLASSES
+-------------------------------------------------------------------------
 
 
-```{r}
-require(DMwR)
-??smote #to search on the method and its usage
-
-
-```
 
 
