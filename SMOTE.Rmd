@@ -16,3 +16,20 @@ __SMOTE is most efficient and best for low dimentional problems where $p < n$ i.
 Now due to balanced classes in the training dataset our classifer can learn in a more better and efficient manner without learning the bias in the classes earlier. Now if a learning algorithm also learns the bias towards a particular class ,then that could actually cause problems and degraded performance in Testing the particular Model on random unseen text cases.
 
 I urge readers to go through a very amazing article explaining the merits and demerits of SMOTE-https://bmcbioinformatics.biomedcentral.com/articles/10.1186/1471-2105-14-106.
+
+---------------------------
+
+
+###Let's start off the implementation in R
+
+```{r}
+require(DMwR)
+table(spam$type)
+spam1<-spam
+spam1$type<-ifelse(spam1$type=="spam",1,2)#if type=spam , then 1, otherwise 2
+spam1$type<-as.factor(spam1$type)  
+
+newSpam<-SMOTE(type ~., data=spam1,perc.over =100, perc.under = 200 )
+
+```
+
