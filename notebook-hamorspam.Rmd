@@ -184,3 +184,18 @@ Ofcourse,there are various other packages to do text processing and building suc
 
 Hope you guys liked the article , make sure to like and share it.
 
+
+
+-------------------------
+
+#IMPLEMENTING SMOTE TO BALANCE THE CLASSES
+
+
+```{r}
+require(DMwR)
+??smote #to search on the method and its usage
+
+
+```
+
+

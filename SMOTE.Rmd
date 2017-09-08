@@ -1,0 +1,10 @@
+---
+title: "Spam or Ham message Classification(PART 2)"
+author: "Anish Singh Walia"
+output:
+  html_document: default
+  html_notebook: default
+---
+
+
+Now in the previous article on classifying the text messages as Sapm or ham we observed that the class lebels were very much biased towards 'Ham' messages and were unbalanced.So to avoid this situation and avoid the Classifier to interpret wrong information and learn the Bias from the data we could implement __SMOTE__ algorithm.
