@@ -175,10 +175,11 @@ prednum<-ifelse(pred$nb.predicted=="spam",1,2)
 
 auc<-roc(as.factor(spam.test[,1]),prednum)
 plot(auc)
+auc$auc
 
-#Area under the curve: 0.9679
+#Area under the curve: 0.9771
 ```
-In the ROC curve the area under the curve is __0.9679__ which is a very nice score and implies that the model can easily recognize text messages as either spam or ham.
+In the ROC curve the area under the curve is __0.9771__ which is a very nice score and implies that the model can easily recognize text messages as either spam or ham.
 ROC curve is plotted between __Sensitivity__-i.e true positive rate(positive classes being classified correctly) vs the __Specificity__-i.e true negetive rate(negetive classes being clssified correctly)
 
 In the Confusion matrix , the __diagonals__ are the correctly classified examples while the __off-diagonals__ the incorrectly classifiec examples.
