@@ -38,7 +38,7 @@ nb.classifier<-textmodel_NB(msg.dfm.train,spam.train[,1])
 #shiny server function
 shinyServer(function(input, output) {
   
-  #take an action whenever a button is pressed
+  
   
   #print the entered message to console each time the submit button is pressed to check
   observeEvent(input$btn, {
@@ -46,13 +46,16 @@ shinyServer(function(input, output) {
   })
  
   
+  #take an action whenever a button is pressed
   class<-eventReactive(input$btn,{
-           
+    
+            #extarct corpus from the user entered text message
             msg=corpus(input$message)
             ms.dfm<-dfm(msg,tolower=TRUE,stem=TRUE)
             ms.dfm=dfm_select(ms.dfm,msg.dfm.train)
             #predicting on the entered text by user
             class=predict(nb.classifier,newdata=ms.dfm)
+            #feed processed user entered text to predict the class
             #printing the class label
             toupper(class$nb.predicted)
             
@@ -60,6 +63,7 @@ shinyServer(function(input, output) {
   })    
   
   output$label <-renderText({
+    if(is.null(input$message)) return()
     
     class() 
   #calling the event function class() from above to print spam or ham after hitting submit button

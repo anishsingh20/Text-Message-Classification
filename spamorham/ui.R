@@ -12,25 +12,32 @@ navbarPage("Text Classification App",
              
           theme = shinytheme("cosmo") ,
            
-            sidebarLayout(
-              sidebarPanel(
-                textInput("message",label="Enter the message having words more than 5 :",placeholder="enter text here"),
+            fluidRow(
+              column(12,offset=4,
+              #sidebarPanel(style="display:block;width:80%",class="col-sm-12",
+                div(class="col-sm-12",
+                textAreaInput("message",
+                label="Enter the message having words more than 5",
+                placeholder="enter text message here"),
                 actionButton("btn","submit")
+                     )#end div  
                 
-                            ),
-                      
-           
+                   )#end column
+            #)
+                 ), #end row
             
+          hr(),
+          
            mainPanel(
             
              
              
-             
-             h3("The message is :", textOutput("label"))
-             
+             column(12,offset=6,
+             h2("The message is :", italic(strong(textOutput("label"))))
+             )
            )
           
-          )
+          
            
       )#close sidebarlayout 
     ) ,
