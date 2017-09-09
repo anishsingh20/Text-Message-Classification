@@ -17,7 +17,7 @@ navbarPage("Text Classification App",
               #sidebarPanel(style="display:block;width:80%",class="col-sm-12",
                 div(class="col-sm-12",
                 textAreaInput("message",
-                label="Enter the message having words more than 5",
+                label="Enter a message having words more than 2",
                 placeholder="enter text message here"),
                 actionButton("btn","submit")
                      )#end div  
@@ -30,16 +30,43 @@ navbarPage("Text Classification App",
           
            mainPanel(
             
+             fluidRow(
+             
+             column(12,offset=6,
+             h2("The entered message is a:", strong((textOutput("label")))),
+             br(),
+             p("Accuracy of prediction on test set is 98.06%")
+             ),
+             
+            tags$hr(),
              
              
              column(12,offset=6,
-             h2("The message is :", italic(strong(textOutput("label"))))
-             )
-           )
+                    h3("Made with love from-",strong("Anish Singh Walia")),
+                    br(),
+                    a(strong("Github link to repository-Text message Classification"),href="https://github.com/anishsingh20/Spam-or-Ham")
+                    
+                    ),#end col2
+             
+                hr(),
+            
+           column(12,offset=6,
+            tags$ol("For any queries reach out to me on:",
+                    tags$li(tags$a("LinkedIn",target="_blank",href="https://www.linkedin.com/in/anish-singh-walia-924529103/")),
+                    tags$li(tags$a("Github",target="_blank",href="https://github.com/anishsingh20")),
+                    tags$li(tags$a("Twitter",target="_blank",href="https://twitter.com/anish_walia"))
+                    )#end ul
+                    
+                    
+                )#end column3
+             
+           ) #end row
+           
+          )#end 
           
           
            
-      )#close sidebarlayout 
+      )#close fluidPage
     ) ,
     
     
@@ -97,11 +124,10 @@ navbarPage("Text Classification App",
     )#end tab2-Details
     
     
+     
     
   )#close navbar
 
-                   
-  
            
   
       
