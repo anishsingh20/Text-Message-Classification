@@ -7,10 +7,11 @@ library(markdown)
 
 navbarPage("Text Classification App",
         tabPanel("Spam or Ham using Naive Bayes Classifier",
+                 
            
         fluidPage(
              
-          theme = shinytheme("cosmo") ,
+          shinythemes::themeSelector() ,
            
             fluidRow(
               column(12,offset=4,
@@ -22,7 +23,15 @@ navbarPage("Text Classification App",
                 actionButton("btn","submit")
                      )#end div  
                 
-                   )#end column
+                   ),#end column
+                
+                br(),
+              
+                column(6,offset=4,style="margin-top:20px",
+                      h4("P.S:The main purpose of making this application was to
+                        learn to develop a Shiny app in R embedded with some predictive analytics i.e applying NLP to classify unstructured text data.") 
+                       
+                       )
             #)
                  ), #end row
             
@@ -38,30 +47,31 @@ navbarPage("Text Classification App",
              p("Accuracy of prediction on test set is 98.06%")
              ),
              
-            tags$hr(),
+            
              
              
              column(12,offset=6,
-                    h3("Made with love from-",strong("Anish Singh Walia")),
+                    a(strong("Github link to repository-Text message Classification"),href="https://github.com/anishsingh20/Spam-or-Ham"),
                     br(),
-                    a(strong("Github link to repository-Text message Classification"),href="https://github.com/anishsingh20/Spam-or-Ham")
+                   
+                    tags$ol("For any queries reach out to me on:",
+                            tags$li(tags$a("LinkedIn",target="_blank",href="https://www.linkedin.com/in/anish-singh-walia-924529103/")),
+                            tags$li(tags$a("Github",target="_blank",href="https://github.com/anishsingh20")),
+                            tags$li(tags$a("Twitter",target="_blank",href="https://twitter.com/anish_walia"))
+                            
+                   
                     
-                    ),#end col2
-             
-                hr(),
-            
-           column(12,offset=6,
-            tags$ol("For any queries reach out to me on:",
-                    tags$li(tags$a("LinkedIn",target="_blank",href="https://www.linkedin.com/in/anish-singh-walia-924529103/")),
-                    tags$li(tags$a("Github",target="_blank",href="https://github.com/anishsingh20")),
-                    tags$li(tags$a("Twitter",target="_blank",href="https://twitter.com/anish_walia"))
                     )#end ul
-                    
-                    
-                )#end column3
+                    )#end col2
              
-           ) #end row
+              ), #end row
            
+             
+             
+            column(12,offset=6,
+                   h4("Made with love from-",strong("Anish Singh Walia"))) 
+             
+             
           )#end 
           
           
