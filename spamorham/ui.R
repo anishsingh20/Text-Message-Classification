@@ -20,6 +20,8 @@ navbarPage("Text Classification App",
                 textAreaInput("message",
                 label="Enter a message having words more than 2",
                 placeholder="enter text message here"),
+                p("Eg-Hey,there how are you,let's meet up!?"),
+                br(),
                 actionButton("btn","submit")
                      )#end div  
                 
