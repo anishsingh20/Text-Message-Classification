@@ -1,5 +1,10 @@
 # Spam-or-Ham
-Classify messages as Spam or Ham-http://rpubs.com/anish20/TextClassification
+
+Classify messages as Spam or Ham-
+
+__Web Application__-https://anishsingh.shinyapps.io/text_classification_app/
+
+__Project Report__-http://rpubs.com/anish20/TextClassification
 
 ### Spam Wordcloud
 
