@@ -47,7 +47,9 @@ msg.dfm <- dfm(msg.corpus, tolower = TRUE)  #generating document freq matrix
 msg.dfm <- dfm_trim(msg.dfm, min_count = 5, min_docfreq = 3)  
 msg.dfm <- dfm_weight(msg.dfm, type = "tfidf") 
 
-#trining and testing data of dfm 
+
+
+#training and testing data of dfm 
 msg.dfm.train<-msg.dfm[1:4458,]
 
 msg.dfm.test<-msg.dfm[4458:nrow(spam),]

@@ -12,7 +12,7 @@ library(quanteda)
 
 
 #R-code for the 
-spam<-read.csv("F:/PROJECTS/Datasets/spam.csv",header=TRUE, sep=",", quote='\"\"', stringsAsFactors=FALSE)
+spam<-read.csv("spam.csv",header=TRUE, sep=",", quote='\"\"', stringsAsFactors=FALSE)
 set.seed(2012)
 spam<-spam[sample(nrow(spam)),]
 

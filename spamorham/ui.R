@@ -1,6 +1,7 @@
 library(shiny)
 require(shinythemes)
 library(markdown)
+require(rsconnect)
 
 # Define UI for application that draws a histogram
 

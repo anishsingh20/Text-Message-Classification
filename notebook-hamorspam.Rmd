@@ -2,8 +2,10 @@
 title: "Spam or Ham message Classification"
 author: "Anish Singh Walia"
 output:
-  html_document: default
+  word_document: default
   html_notebook: default
+  pdf_document: default
+  html_document: default
 ---
 
 
