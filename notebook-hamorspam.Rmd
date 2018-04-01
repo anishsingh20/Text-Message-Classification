@@ -275,6 +275,33 @@ Hence we can observe that the K-NN classifier gave us an AUC value of __0.82__, 
 
 
 
+
+###Building a SVM classifier
+
+
+First starting off with some text preprocessing.
+
+```{r}
+require(RTextTools)
+
+msg_matrix <- create_matrix(spam[,2], language = "English", 
+                                       removeNumbers = TRUE, 
+                                       removePunctuation = TRUE, 
+                                       removeStopwords = FALSE, stemWords = FALSE)
+
+
+msg_container <- create_container(msg_matrix,
+                                             spam$type, 
+                                             trainSize = 1:4458, testSize = 4458:nrow(spam), 
+                                             virgin = FALSE)
+
+
+
+
+```
+
+
+
 ##Conclusion
 
 
