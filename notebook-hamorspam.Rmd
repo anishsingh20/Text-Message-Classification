@@ -225,10 +225,11 @@ auc_Knn$sensitivities #true positive rate-TPR- is a spam message
 auc_Knn$specificities #true negetive rate-TNR-not a spam message
 auc_Knn$auc
 
+
 ```
 
 
-Hence we can observe that the K-NN classifier gave us an AUC value of 0.82, which is not as good as the Naive Bayes text classifier trained above.
+Hence we can observe that the K-NN classifier gave us an AUC value of __0.82__, which is not as good as the Naive Bayes text classifier trained above.
 
 
 
