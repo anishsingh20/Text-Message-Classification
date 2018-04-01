@@ -13,7 +13,7 @@ Requiring the necessary packages-
 ```{r,message=FALSE,warning=FALSE}
 
 require(quanteda)#natural language processing package
-?quanteda 
+require(dplyr)
 require(RColorBrewer)
 require(ggplot2)
 require(pROC)#to plot a ROC curve and find auc
@@ -210,7 +210,7 @@ table(predicted=pred$nb.predicted,actual=spam.test[,1])
 #16 wrongly classified for ham and 7 examples wrongly classified for spam
 
 #acccuracy of the classifier on Test data
-mean(pred$nb.predicted==spam.test[,1])*100
+acc_nb=mean(pred$nb.predicted==spam.test[,1])*100
 #accuracy of 97% on test set
 
 prednum<-ifelse(pred$nb.predicted=="spam",1,2)
@@ -219,9 +219,9 @@ auc<-roc(as.factor(spam.test[,1]),prednum)
 plot(auc)
 auc$auc
 
-#Area under the curve: 0.9771
+#Area under the curve: 0.9679
 ```
-In the ROC curve the area under the curve is __0.9771__ which is a very nice score and implies that the model can easily recognize text messages as either spam or ham.
+In the ROC curve the area under the curve is __0.9679__ which is a very nice score and implies that the model can easily recognize text messages as either spam or ham.
 ROC curve is plotted between __Sensitivity__-i.e true positive rate(positive classes being classified correctly) vs the __Specificity__-i.e true negetive rate(negetive classes being clssified correctly)
 
 In the Confusion matrix , the __diagonals__ are the correctly classified examples while the __off-diagonals__ the incorrectly classifiec examples.
@@ -255,7 +255,7 @@ confMat
 #TNR = (968)/968 = 1
 
 #accuracy of the KNN-classifier
-mean(knn.pred==spam.test[,1])*100
+acc_knn=mean(knn.pred==spam.test[,1])*100
 
 #the predicted class argument of the roc() function expects a ordered factor
 auc_Knn<-roc(as.factor(spam.test[,1]),ordered(knn.pred))
@@ -320,6 +320,9 @@ Finding AUC value and ROC curve.
 #let's generate a confusion matrix-
 table(Pred=svm_model_result$SVM_LABEL,Actual=spam[4458:nrow(spam),1])
 
+acc_svm=mean(svm_model_result$SVM_LABEL==spam.test[,1])*100
+
+
 auc_svm<-roc(as.factor(spam.test[,1]),ordered(svm_model_result$SVM_LABEL))
 
 plot(auc_svm) #roc curve
@@ -335,10 +338,25 @@ auc_svm$specificities
 
 Hence SVM classifier gave us an AUC value of __0.95__, which is better than K-NN classifer but slightly lower than Naive bayes classifier.
 
+-----------------------
+
+
+
+### Comparing the 3 models-
+
+
+Generating a comparative evaluative table of all the 3 classifier generated for the text classification problem-
 
 ```{r}
 
+eval_table<-as.data.frame(rbind(auc$auc,auc_svm$auc,auc_Knn$auc))
+colnames(eval_table)<-c("AUC")
+eval_table<- eval_table %>% mutate(Accuracy=c(acc_nb,acc_svm,acc_knn))
 
+row.names(eval_table)<- c("Naive_bayes","SVM","K-NN")
+
+#comparative evaluation table of the 3 classifiers
+eval_table
 
 ```
 
