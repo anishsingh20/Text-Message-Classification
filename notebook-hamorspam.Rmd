@@ -192,44 +192,32 @@ In the Confusion matrix , the __diagonals__ are the correctly classified example
 
 
 
-### Training a SVM classifier
-
-We will use the `caret` package in R to train a SVM classifier to do text classification.
-
-First we will do some data pre-processing.
+### Training a K-NN classifier
 
 
-```{r}
-require(tm)
-require(caret)
 
-spam.train$label<-0
-spam.train$label = ifelse(spam.train$type=="ham",0,1)
-
-corpus_msg <- Corpus(VectorSource(spam.train[,2]))
-
-tdm_msg <- DocumentTermMatrix(corpus_msg, list(removePunctuation = TRUE, 
-                                               removeNumbers = TRUE))
-
-training_set_msg <- as.matrix(tdm_msg)
-
-#adding the class label column
-training_set_msg <- cbind(training_set_msg, spam.train$label)
-
-#assigning last column's name y
-colnames(training_set_msg)[ncol(training_set_msg)] <- "y"
-
-#converting the DFM matrix to a large data frame
-training_set_msg <- as.data.frame(training_set_msg)
-training_set_msg$y <- as.factor(training_set_msg$y)
-```
-
-Now let's train the SVM model.
+Now let's train the K-nearest neighbor model.
 
 ```{r}
 
 
-svmMod1<-train(spam.train[,1] ~ .,data = msg.dfm.train,method = 'svmLinear3')
+
+#k=5 nearest neighbors model
+knn.pred<-knn(msg.dfm.train,msg.dfm.test,spam.train[,1],k = 5,prob=T)
+
+summary(knn.pred)
+
+confMat<-table( Predictions = knn.pred,Actual=spam.test[,1])
+confMat
+
+#accuracy of the KNN-classifier
+mean(knn.pred==spam.test[,1])*100
+
+#the predicted class argument of the roc() function expects a ordered factor
+auc<-roc(as.factor(spam.test[,1]),ordered(knn.pred))
+
+plot(auc)
+auc$auc
 
 
 ```
