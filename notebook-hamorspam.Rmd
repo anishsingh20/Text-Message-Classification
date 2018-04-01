@@ -2,9 +2,9 @@
 title: "Spam or Ham message Classification"
 author: "Anish Singh Walia"
 output:
-  word_document: default
-  html_notebook: default
   pdf_document: default
+  html_notebook: default
+  word_document: default
   html_document: default
 ---
 
@@ -110,7 +110,27 @@ ham.col=brewer.pal(10, "BrBG")
 textplot_wordcloud(ham.plot,min.freq=50,colors=ham.col,fixed.asp=TRUE)
 title("Ham Wordcloud",col.main = "grey14")
 
+
+
 ```
+
+generating a Frequency plot of most frequently occuring words in Ham messages-
+
+```{r}
+
+#finding the frequencies of the 100 most frequently occuring words in ham messages
+features_ham <- textstat_frequency(ham.plot, n = 100)
+
+features_ham$feature <- with(features_ham, reorder(feature, -frequency))
+
+
+ggplot(features_ham, aes(x = feature, y = frequency)) +
+    geom_point() + 
+    theme(axis.text.x = element_text(angle = 90, hjust = 1))
+
+```
+
+
 
 -------------
 
@@ -196,10 +216,11 @@ In the Confusion matrix , the __diagonals__ are the correctly classified example
 
 
 
-Now let's train the K-nearest neighbor model.
+Now let's train the K-nearest neighbor model. K-NN is a __lazy learner__, which means we have to give it the test data point $t$, using which it will try to find the nearest neighbors to that test data point $t$ from the training data, using a distance metric and classify $t$ using the voting(mode) method.
+
 
 ```{r}
-
+require(class)
 
 
 #k=5 nearest neighbors model
