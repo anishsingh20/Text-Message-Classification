@@ -203,7 +203,7 @@ Now let's train the K-nearest neighbor model.
 
 
 #k=5 nearest neighbors model
-knn.pred<-knn(msg.dfm.train,msg.dfm.test,spam.train[,1],k = 5,prob=T)
+knn.pred<-knn(msg.dfm.train,msg.dfm.test,spam.train[,1],k = 1,prob=T)
 
 summary(knn.pred)
 
@@ -218,9 +218,14 @@ auc<-roc(as.factor(spam.test[,1]),ordered(knn.pred))
 
 plot(auc)
 auc$auc
+auc$sensitivities #true positive rate-TPR- is a spam message
+auc$specificities #true negetive rate-TNR-not a spam message
 
 
 ```
+
+
+Hence we can observe that the K-NN classifier gave us an AUC value of 0.82
 
 
 
