@@ -290,8 +290,7 @@ msg_matrix <- create_matrix(spam[,2], language = "English",
                                        removeStopwords = FALSE, stemWords = FALSE)
 
 
-msg_container <- create_container(msg_matrix,
-                                             spam$type, 
+msg_container <- create_container(msg_matrix,spam$type, 
                                              trainSize = 1:4458, testSize = 4458:nrow(spam), 
                                              virgin = FALSE)
 
@@ -299,6 +298,50 @@ msg_container <- create_container(msg_matrix,
 
 
 ```
+
+
+Let's traing a SVM model.
+
+```{r}
+
+svm_model <- train_model(msg_container, algorithm = "SVM")
+summary(svm_model)
+
+
+#summary of the SVM model
+svm_model_result <- classify_model(msg_container, svm_model) #gives a data frame with predicted class labels and their probabilities value
+
+```
+
+Finding AUC value and ROC curve.
+
+```{r}
+
+#let's generate a confusion matrix-
+table(Pred=svm_model_result$SVM_LABEL,Actual=spam[4458:nrow(spam),1])
+
+auc_svm<-roc(as.factor(spam.test[,1]),ordered(svm_model_result$SVM_LABEL))
+
+plot(auc_svm) #roc curve
+
+auc_svm$auc #auc value is 0.95
+
+auc_svm$sensitivities
+
+auc_svm$specificities
+
+
+```
+
+Hence SVM classifier gave us an AUC value of __0.95__, which is better than K-NN classifer but slightly lower than Naive bayes classifier.
+
+
+```{r}
+
+
+
+```
+
 
 
 
