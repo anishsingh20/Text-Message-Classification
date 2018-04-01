@@ -216,20 +216,15 @@ training_set_msg <- as.matrix(tdm_msg)
 #adding the class label column
 training_set_msg <- cbind(training_set_msg, spam.train$label)
 
-
+#assigning last column's name y
 colnames(training_set_msg)[ncol(training_set_msg)] <- "y"
 
+#converting the DFM matrix to a large data frame
 training_set_msg <- as.data.frame(training_set_msg)
 training_set_msg$y <- as.factor(training_set_msg$y)
-
-
-
-
-
-
-
-
 ```
+
+Now let's train the SVM model.
 
 ```{r}
 
