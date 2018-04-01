@@ -194,6 +194,9 @@ In the Confusion matrix , the __diagonals__ are the correctly classified example
 
 ### Training a SVM classifier
 
+We will use the `caret` package in R to train a SVM classifier to do text classification.
+
+
 
 ##Conclusion
 
