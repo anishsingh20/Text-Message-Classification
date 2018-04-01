@@ -210,22 +210,25 @@ summary(knn.pred)
 confMat<-table( Predictions = knn.pred,Actual=spam.test[,1])
 confMat
 
+#TPR = (51)/(51+96) = 0.653
+#TNR = (968)/968 = 1
+
 #accuracy of the KNN-classifier
 mean(knn.pred==spam.test[,1])*100
 
 #the predicted class argument of the roc() function expects a ordered factor
-auc<-roc(as.factor(spam.test[,1]),ordered(knn.pred))
+auc_Knn<-roc(as.factor(spam.test[,1]),ordered(knn.pred))
 
-plot(auc)
-auc$auc
-auc$sensitivities #true positive rate-TPR- is a spam message
-auc$specificities #true negetive rate-TNR-not a spam message
+plot(auc_Knn)
 
+auc_Knn$sensitivities #true positive rate-TPR- is a spam message
+auc_Knn$specificities #true negetive rate-TNR-not a spam message
+auc_Knn$auc
 
 ```
 
 
-Hence we can observe that the K-NN classifier gave us an AUC value of 0.82
+Hence we can observe that the K-NN classifier gave us an AUC value of 0.82, which is not as good as the Naive Bayes text classifier trained above.
 
 
 
