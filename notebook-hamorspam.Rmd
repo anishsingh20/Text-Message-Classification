@@ -188,7 +188,12 @@ In the Confusion matrix , the __diagonals__ are the correctly classified example
 
 
 
-----------
+------------------------------
+
+
+
+### Training a SVM classifier
+
 
 ##Conclusion
 
