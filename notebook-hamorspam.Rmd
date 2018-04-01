@@ -203,12 +203,19 @@ First we will do some data pre-processing.
 require(tm)
 require(caret)
 
-corpus_msg <- Corpus(VectorSource(spam.train[,1]))
+spam.train$label<-0
+spam.train$label = ifelse(spam.train$type=="ham",0,1)
+
+corpus_msg <- Corpus(VectorSource(spam.train[,2]))
 
 tdm_msg <- DocumentTermMatrix(corpus_msg, list(removePunctuation = TRUE, 
                                                removeNumbers = TRUE))
 
 training_set_msg <- as.matrix(tdm_msg)
+
+#adding the class label column
+training_set_msg <- cbind(training_set_msg, spam.train$label)
+
 
 colnames(training_set_msg)[ncol(training_set_msg)] <- "y"
 
