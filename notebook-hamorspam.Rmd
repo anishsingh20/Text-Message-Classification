@@ -97,6 +97,25 @@ title("Spam Wordcloud", col.main = "grey14")
 ```
 
 
+Generating a Frequency plot of most frequently occuring words in Spam messages-
+
+```{r}
+
+features_spam <- textstat_frequency(spam.plot, n = 100)
+
+features_spam$feature <- with(features_spam, reorder(feature, -frequency))
+
+
+ggplot(features_spam, aes(x = feature, y = frequency)) +
+    geom_point(color="red") + 
+    theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
+    ggtitle("Frequency plot of most frequently occuring words in Spam messages")
+
+
+
+
+```
+
 
 ------------
 
@@ -114,7 +133,7 @@ title("Ham Wordcloud",col.main = "grey14")
 
 ```
 
-generating a Frequency plot of most frequently occuring words in Ham messages-
+Generating a Frequency plot of most frequently occuring words in Ham messages-
 
 ```{r}
 
@@ -126,7 +145,8 @@ features_ham$feature <- with(features_ham, reorder(feature, -frequency))
 
 ggplot(features_ham, aes(x = feature, y = frequency)) +
     geom_point() + 
-    theme(axis.text.x = element_text(angle = 90, hjust = 1))
+    theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
+    ggtitle("Frequency plot of most frequently occuring words in Ham messages")
 
 ```
 
